@@ -1,36 +1,22 @@
 import pandas as pd
-
 import numpy as np
-
 import copy
 
 def read_D(what, K):
 
-    D_path = "C:/Intermodal/Case study/Preferences/D_EGS - 10r.xlsx"
+    D_path = "Instances/D_EGS-r.xlsx"
 
     D_origin_barge = pd.read_excel(D_path, 'Barge')
-
     D_origin_train = pd.read_excel(D_path, 'Train')
-
     D_origin_truck = pd.read_excel(D_path, 'Truck')
 
-
-
     D_origin_barge = D_origin_barge.set_index('N')
-
     D_origin_train = D_origin_train.set_index('N')
-
     D_origin_truck = D_origin_truck.set_index('N')
 
-
-
     D_origin_barge = D_origin_barge.values
-
     D_origin_train = D_origin_train.values
-
     D_origin_truck = D_origin_truck.values
-
-
 
     D = {}
 
@@ -55,9 +41,7 @@ def read_D(what, K):
         return D
 
     D_origin_All = pd.read_excel(D_path, 'All')
-
     D_origin_All = D_origin_All.set_index('N')
-
     D_origin_All = D_origin_All.values
 
     if what == 'D_All':
@@ -190,7 +174,7 @@ def read_no_route():
 
     # please change it to your own data path
 
-    Barge_no_land_path = "C:/Intermodal/Case study/Barge_no_land.xlsx"
+    Barge_no_land_path = "Instances/suitable_routes.xlsx"
 
     no_route_barge = pd.read_excel(Barge_no_land_path, 'Barge')
 
@@ -201,6 +185,10 @@ def read_no_route():
     no_route_barge['O'] = no_route_barge['O'].map(names).fillna(no_route_barge['O'])
 
     no_route_barge['D'] = no_route_barge['D'].map(names).fillna(no_route_barge['D'])
+
+    no_route_truck['O'] = no_route_truck['O'].map(names).fillna(no_route_truck['O'])
+
+    no_route_truck['D'] = no_route_truck['D'].map(names).fillna(no_route_truck['D'])
 
     no_route_barge = no_route_barge.values
 
@@ -216,7 +204,7 @@ parallel_number = 1
 
 #please change it to your own data path
 
-data_path = "C:/Intermodal/Case study/vs. Wenjing/instances/Intermodal_EGS_data_all.xlsx"
+data_path = "Instances/Intermodal_EGS_data_all.xlsx"
 
 
 
@@ -232,7 +220,7 @@ Data = pd.ExcelFile(data_path)
 
 #number of requests, it can be 5, 10, 20, 30, 50, 100 ...
 
-request_number_in_R = 10
+request_number_in_R = 5
 
 
 
@@ -279,3 +267,5 @@ R, R_info, K, R_pool = read_R_K(request_number_in_R)
 #distance between terminals of all vehicles, distance between terminals of trucks
 
 D, D_origin_All = read_D('D_All', K)
+
+print()
