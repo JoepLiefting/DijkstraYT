@@ -268,4 +268,4 @@ R, R_info, K, R_pool = read_R_K(request_number_in_R)
 
 D, D_origin_All = read_D('D_All', K)
 
-print()
+print(D[0])
